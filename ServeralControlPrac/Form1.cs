@@ -58,24 +58,41 @@ namespace ServeralControlPrac
 
         private void Buttonclick(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            switch (btn.Name)
+            {
+                case "check":
+                    ShowCheckboxResult();
+                    break;
+                case "radio":
+                    ShowRadioResult();
+                    break;
+            }
+        }
+
+        private void ShowRadioResult()
+        {
+            foreach (var item in Controls)
+            {
+                RadioButton rb = item as RadioButton;
+                if (rb != null && rb.Checked)
+                {
+                    MessageBox.Show(rb.Text);
+                }
+            }
+        }
+
+        private void ShowCheckboxResult()
+        {
             List<string> list = new List<string>();
 
-            foreach(var item in Controls)
+            foreach (var item in Controls)
             {
                 CheckBox cb = item as CheckBox;
-                if(cb != null && cb.Checked)
+                if (cb != null && cb.Checked)
                 {
                     list.Add(cb.Text);
                 }
-
-                //if(item is CheckBox)
-                //{
-                //    CheckBox cb = (CheckBox)item;
-                //    if (cb.Checked)
-                //    {
-                //        list.Add(cb.Text);
-                //    }
-                //}
             }
             MessageBox.Show(string.Join(",", list));
         }
