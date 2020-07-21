@@ -36,11 +36,48 @@ namespace ServeralControlPrac
             Controls.Add(cb2);
             Controls.Add(cb3);
             Controls.Add(btn);
+
+            RadioButton rb1 = new RadioButton();
+            RadioButton rb2 = new RadioButton();
+            RadioButton rb3 = new RadioButton();
+            Button btn2 = new Button();
+            rb1.Text = "감자";
+            rb2.Text = "고구마";
+            rb3.Text = "토마토";
+            btn2.Text = "클릭";
+            rb1.Location = new Point(40, 10);
+            rb2.Location = new Point(40, 40);
+            rb3.Location = new Point(40, 70);
+            btn2.Location = new Point(40, 100);
+            btn2.Click += Buttonclick;
+            Controls.Add(rb1);
+            Controls.Add(rb2);
+            Controls.Add(rb3);
+            Controls.Add(btn2);
         }
 
         private void Buttonclick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            List<string> list = new List<string>();
+
+            foreach(var item in Controls)
+            {
+                CheckBox cb = item as CheckBox;
+                if(cb != null && cb.Checked)
+                {
+                    list.Add(cb.Text);
+                }
+
+                //if(item is CheckBox)
+                //{
+                //    CheckBox cb = (CheckBox)item;
+                //    if (cb.Checked)
+                //    {
+                //        list.Add(cb.Text);
+                //    }
+                //}
+            }
+            MessageBox.Show(string.Join(",", list));
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
